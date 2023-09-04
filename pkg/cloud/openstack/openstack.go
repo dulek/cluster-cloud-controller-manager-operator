@@ -49,9 +49,10 @@ func (o *openstackAssets) GetRenderedResources() []client.Object {
 
 func getTemplateValues(images *imagesReference, operatorConfig config.OperatorConfig) (common.TemplateValues, error) {
 	values := common.TemplateValues{
-		"images":            images,
-		"cloudproviderName": operatorConfig.GetPlatformNameString(),
-		"featureGates":      operatorConfig.FeatureGates,
+		"images":             images,
+		"cloudproviderName":  operatorConfig.GetPlatformNameString(),
+		"infrastructureName": operatorConfig.InfrastructureName,
+		"featureGates":       operatorConfig.FeatureGates,
 	}
 	_, err := govalidator.ValidateMap(values, templateValuesValidationMap)
 	if err != nil {
